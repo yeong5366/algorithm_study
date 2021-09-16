@@ -21,8 +21,7 @@ vector<int> makeTable(string pattern)
 			j = table[j - 1];//**잘 이해안가니까 일단 외워두자KMP
 			//j가 처음자리(0)으로 돌아가거나, pattern[i]=[j]가 될때까지 검사하는 j의 위치를 옮긴다.
 		}
-		//위의 while문으로 인해 j가 0으로 돌아가거나 접두,접미가 같아질때까지 줄어든다면
-#		//j을 이동시키자
+		//위의 while문으로 인해 j가 0으로 돌아가거나 접두,접미가 같아질때까지 줄어든다면 j을 이동시키자
 		if (pattern[i] == pattern[j]) {
 			table[i] = ++j;
 		}
@@ -32,7 +31,7 @@ vector<int> makeTable(string pattern)
 
 void KMP(string parent, string pattern)
 {
-	vector<int> table = makeTable(pattern);//일치길이 테이블
+	vector<int> table = makeTable(pattern);//step1 일치길이 테이블을 구한다
 	int parentsize = parent.size();
 	int patternsize = pattern.size();
 
@@ -68,12 +67,6 @@ int main()
 	string pattern = "abacaaba";//찾을 문자열
 	string parent = "aaaccabacaabaccdcaaabacaabac";
 
-	//step 1. 패턴에서 최대 일치 길이 테이블을 구축한다.
-	//vector<int>table = makeTable(pattern);//최대 일치 길이 테이블
-	/*for (int i = 0; i < table.size();i++)
-	{
-		printf("%d", table[i]);
-	}*/
 	KMP(parent, pattern);
 
 	for (int x : position)
