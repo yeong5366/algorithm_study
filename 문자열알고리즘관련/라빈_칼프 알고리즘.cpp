@@ -17,7 +17,7 @@ bool checksmall(string subparent, string pattern, int start,int patternsize)
 		{
 			return false;
 		}
-	}//patternhash 구함
+	}//hash값이 일치할때 정말로 패턴이 일치하는지 확인한다
 
 	return true;
 }
