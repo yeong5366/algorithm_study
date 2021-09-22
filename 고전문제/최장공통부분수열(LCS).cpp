@@ -32,7 +32,7 @@ LCS(Xn,Ym) = max(LCS(Xn,Ym-1),LCS(Xn-1,Ym)
 
 using namespace std;
 
-
+int LCS[1001][1001];//반복문 안에서 선언하면 Runtime error 가 발생한다. 어차피 해당 matrix의 서쪽과 북쪽둘레가 0으로 되어있어서, 초기화를 따로 해주지않더라도 혼동되지않고 새로 값을 덮어씌울수있다.
 
 int main()
 {
@@ -46,7 +46,7 @@ int main()
 	{
 		int n;
 		string str1, str2;
-		int LCS[1001][1001];
+		//int LCS[1001][1001];
 
 		cin >> str1 >> str2;
 		int len1 = str1.size(), len2 = str2.size();
