@@ -51,21 +51,22 @@ int main()
 		cin >> str1 >> str2;
 		int len1 = str1.size(), len2 = str2.size();
 
-		for (int i = 0; i < len1;i++)
+		for (int i = 1; i <= len1;i++)
 		{
-			for (int j = 0; j < len2;j++)
+			for (int j = 1; j <= len2;j++)
 			{
-				if (str1[i] == str2[j])
+				if (str1[i-1] == str2[j-1])
 				{
-					LCS[i + 1][j + 1] = LCS[i][j] + 1;//두 수열의 끝 문자가 같으면 해당 문자를 뺐을때 작은 수열의 LCS 값에 +1을 한 것과 같다
+					LCS[i][j] = LCS[i - 1][j - 1] + 1;//두 수열의 끝 문자가 같으면 해당 문자를 뺐을때 작은 수열의 LCS 값에 +1을 한 것과 같다
 				}
 				else
 				{
-					LCS[i + 1][j + 1] = max(LCS[i + 1][j], LCS[i][j + 1]);
+					LCS[i][j] = max(LCS[i - 1][j], LCS[i][j - 1]);
 					//끝문자가 같지않으면
 					//1. 부분수열이 str1의 끝점을 가질때: 원 str1, str2는 하나뺀 수열에서의 LCS
 					//2. 부분수열이 str2의 끝점을 가질때: 원 str2, str1의 원소를 하나 뺀 수열에서의 LCS
 					//1,2중 더 긴 부분 수열이 현 str1,2의 부분 수열이 된다.
+					//이미 반복문을 통해서 LCS[i][j]보다 작은 문제인 LCS[i-1][j], LCS[i][j-1],LCS[i-1][j-1]은 연산이 끝났기때문에 사용해도된다.
 				}
 			}
 			
